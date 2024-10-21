@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #0056b3;
+        }
+        .section-header {
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        /* Header styles */
+/* .header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0056b3;
+} */
+
+.logo {
+    width: 50px;
+    height: 50px;
+    color: white;
+}
+
+.dashboard h1 {
+    color: white;
+
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+  <div class="header">
+    <div>
+        <img src="1.jpg" alt="Logo" class="logo">
+    </div>
+    <div class="dashboard">
+        <h1>Name of the School</h1>
+    </div>
+
+<h1>Teacher Dashboard</h1>
+
+
+<!-- Term 1 Results Table -->
+<h2>Term 1 Results Table</h2>
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Test 1</th>
+        <th>Test 2</th>
+        <th>Test 3</th>
+        <th>Exam</th>
+        <th>Level</th>
+    </tr>
+    <tr>
+        <td>Subject 1</td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Level"></td>
+    </tr>
+    <tr>
+        <td>Subject 2</td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Level"></td>
+    </tr>
+    <tr>
+        <td><strong>Attendance</strong></td>
+        <td colspan="5"><input type="text" placeholder="Attendance"></td>
+    </tr>
+    <tr>
+        <td><strong>Results</strong></td>
+        <td colspan="5"><input type="text" placeholder="Overall Results"></td>
+    </tr>
+    <tr>
+        <td><strong>Comments</strong></td>
+        <td colspan="5"><input type="text" placeholder="Comments"></td>
+    </tr>
+</table>
+
+<!-- Term 2 Results Table -->
+<h2>Term 2 Results Table</h2>
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Test 1</th>
+        <th>Test 2</th>
+        <th>Test 3</th>
+        <th>Exam</th>
+        <th>Level</th>
+    </tr>
+    <tr>
+        <td>Subject 1</td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Level"></td>
+    </tr>
+    <tr>
+        <td>Subject 2</td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Level"></td>
+    </tr>
+    <tr>
+        <td><strong>Attendance</strong></td>
+        <td colspan="5"><input type="text" placeholder="Attendance"></td>
+    </tr>
+    <tr>
+        <td><strong>Results</strong></td>
+        <td colspan="5"><input type="text" placeholder="Overall Results"></td>
+    </tr>
+    <tr>
+        <td><strong>Comments</strong></td>
+        <td colspan="5"><input type="text" placeholder="Comments"></td>
+    </tr>
+</table>
+
+<!-- Term 3 Results Table -->
+<h2>Term 3 Results Table</h2>
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Test 1</th>
+        <th>Test 2</th>
+        <th>Test 3</th>
+        <th>Exam</th>
+        <th>Level</th>
+    </tr>
+    <tr>
+        <td>Subject 1</td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Level"></td>
+    </tr>
+    <tr>
+        <td>Subject 2</td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Level"></td>
+    </tr>
+    <tr>
+        <td><strong>Attendance</strong></td>
+        <td colspan="5"><input type="text" placeholder="Attendance"></td>
+    </tr>
+    <tr>
+        <td><strong>Results</strong></td>
+        <td colspan="5"><input type="text" placeholder="Overall Results"></td>
+    </tr>
+    <tr>
+        <td><strong>Comments</strong></td>
+        <td colspan="5"><input type="text" placeholder="Comments"></td>
+    </tr>
+</table>
+<button type="button" onclick="submitTermResults(3)">Submit Term 3 Results</button>
+
+<!-- Term 4 Results Table -->
+<h2>Term 4 Results Table</h2>
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Test 1</th>
+        <th>Test 2</th>
+        <th>Test 3</th>
+        <th>Exam</th>
+        <th>Level</th>
+    </tr>
+    <tr>
+        <td>Subject 1</td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Level"></td>
+    </tr>
+    <tr>
+        <td>Subject 2</td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Result"></td>
+        <td><input type="text" placeholder="Level"></td>
+    </tr>
+    <tr>
+        <td><strong>Attendance</strong></td>
+        <td colspan="5"><input type="text" placeholder="Attendance"></td>
+    </tr>
+    <tr>
+        <td><strong>Results</strong></td>
+        <td colspan="5"><input type="text" placeholder="Overall Results"></td>
+    </tr>
+    <tr>
+        <td><strong>Comments</strong></td>
+        <td colspan="5"><input type="text" placeholder="Comments"></td>
+    </tr>
+</table>
+
+</body>
+</html>

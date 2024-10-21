@@ -1,0 +1,117 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            max-width: 500px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        option{
+            color: #004494;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004494;
+        }
+
+        label{
+            color: #004494;
+        }
+    </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div>
+        <img src="1.jpg" alt="Logo" class="logo">
+    </div>
+    <div class="dashboard">
+        <h1>DIOPONG PRIMARY SCHOOL</h1>
+    </div>
+</div>
+    <form action="addlearner.php" method="post">
+        <div class="addcontainer">
+          <h1>Register a Learner</h1>
+          <hr>
+      
+          <label for="name"><b>Name(s):</b></label>
+          <input type="text" placeholder="Enter name" name="name" id="name" required>
+    
+          <label for="surname"><b>Surname:</b></label>
+          <input type="text" placeholder="Surname" name="surname" id="surname" required>
+    
+          <label for="id_number"><b>ID Number:</b></label>
+          <input type="text" placeholder="ID number" name="id_number" id="id_number" required>
+
+          <label for="date_of_birth"><b>Date of Birth:</b></label>
+          <input type="date" name="date_of_birth" id="date_of_birth" required>
+
+          <label for="gender"><b>Gender:</b></label>
+          <select name="gender" id="gender" required>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="other">Other</option>
+          </select>
+
+          <label for="address"><b>Address:</b></label>
+          <input type="text" placeholder="Enter physical address" name="address" id="address" required>
+    
+          <label for="grade"><b>Grade:</b></label>
+          <input type="text" placeholder="Enter Grade" name="grade" id="grade" required>
+
+          <label for="subjects"><b>Select Subjects (up to 4):</b></label>
+          <select id="subjects" name="subjects[]" multiple size="6" required>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Science">Science</option>
+              <option value="History">History</option>
+              <option value="English">English</option>
+              <option value="Geography">Geography</option>
+              <option value="Art">Art</option>
+              <option value="Music">Music</option>
+              <option value="Physical Education">Physical Education</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="French">French</option>
+              <option value="Spanish">Spanish</option>
+              <option value="German">German</option>
+              <option value="Biology">Biology</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Physics">Physics</option>
+          </select>
+
+          <hr>
+          <button type="submit" class="registerbtn">Register</button>
+        </div>
+    </form>
+</body>
+</html>
