@@ -67,35 +67,43 @@ $conn->close();
         <input type="hidden" name="parent_id" value="<?php echo $parent['parent_id']; ?>">
 
         <label for="name"><b>Name(s):</b></label>
-        <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($parent['name']); ?>" required>
+        <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($parent['name']); ?>" required pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed.">
 
         <label for="surname"><b>Surname:</b></label>
-        <input type="text" name="surname" id="surname" value="<?php echo htmlspecialchars($parent['surname']); ?>" required>
+        <input type="text" name="surname" id="surname" value="<?php echo htmlspecialchars($parent['surname']); ?>" required pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed.">
 
         <label for="id_number"><b>ID Number:</b></label>
-        <input type="text" name="id_number" id="id_number" value="<?php echo htmlspecialchars($parent['id_number']); ?>" required>
+      <label for="id_number"><b>ID Number:</b></label>
+        <input type="text" name="id_number" id="id_number" value="<?php echo htmlspecialchars($parent['id_number']); ?>" required pattern="\d{13}" 
+        title="ID number must be exactly 13 digits.">
 
         <label for="gender"><b>Gender:</b></label>
-        <select name="gender" id="gender" required>
+        <select name="gender" id="gender" required pattern="^(Male|Female|Other)$" 
+        title="Please enter 'Male', 'Female', or 'Other'.">
             <option value="male" <?php if ($parent['gender'] == 'male') echo 'selected'; ?>>Male</option>
             <option value="female" <?php if ($parent['gender'] == 'female') echo 'selected'; ?>>Female</option>
+            option value="other" <?php if ($parent['gender'] == 'other') echo 'selected'; ?>>other</option>
         </select>
         <br><br>
 
         <label for="address"><b>Physical Address:</b></label>
-        <input type="text" name="address" id="address" value="<?php echo htmlspecialchars($parent['address']); ?>" required>
+        <input type="text" name="address" id="address" value="<?php echo htmlspecialchars($parent['address']); ?>" required pattern=".{5,}" 
+        title="Address must be at least 5 characters long.">
 
         <label for="email"><b>Email Address:</b></label>
-        <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($parent['email']); ?>" required>
+        <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($parent['email']); ?>" required title="Please enter a valid email address.">
 
         <label for="contact"><b>Contact:</b></label>
-        <input type="text" name="contact" id="contact" value="<?php echo htmlspecialchars($parent['contact']); ?>" required>
+        <input type="text" name="contact" id="contact" value="<?php echo htmlspecialchars($parent['contact']); ?>" required pattern="^\+27[0-9]{9}$" 
+        title="Please enter a valid contact number in the format +27XXXXXXXXX.">
 
         <label for="user_name"><b>Username:</b></label>
-        <input type="text" name="user_name" id="user_name" value="<?php echo htmlspecialchars($parent['username']); ?>" required>
+        <input type="text" name="user_name" id="user_name" value="<?php echo htmlspecialchars($parent['username']); ?>" required pattern="^[a-zA-Z0-9_]{3,15}$" 
+        title="Username must be 3-15 characters long and can include letters, numbers, and underscores.">
 
         <label for="user_type"><b>User Type:</b></label>
-        <input type="text" name="user_type" id="user_type" value="<?php echo htmlspecialchars($parent['user_type']); ?>" required>
+        <input type="text" name="user_type" id="user_type" value="<?php echo htmlspecialchars($parent['user_type']); ?>" required pattern="^(Admin|Teacher|Parent)$" 
+        title="Please enter a valid user type: Admin, Teacher, or Parent.">
 
         <hr>
         <button type="submit" class="registerbtn">Update Details</button>

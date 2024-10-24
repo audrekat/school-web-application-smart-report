@@ -66,16 +66,16 @@
           <hr>
       
           <label for="name"><b>Name(s):</b></label>
-          <input type="text" placeholder="Enter name" name="name" id="name" required>
+          <input type="text" placeholder="Enter name" name="name" id="name" required pattern="[A-Za-z]+" title="Only letters are allowed.">
     
           <label for="surname"><b>Surname:</b></label>
-          <input type="text" placeholder="Surname" name="surname" id="surname" required>
+          <input type="text" placeholder="Surname" name="surname" id="surname" required pattern="[A-Za-z]+" title="Only letters are allowed.">
     
           <label for="id_number"><b>ID Number:</b></label>
-          <input type="text" placeholder="ID number" name="id_number" id="id_number" required>
+          <input type="text" placeholder="ID number" name="id_number" id="id_number" required  pattern="\d{13}" title="ID number must be exactly 13 digits.">
 
           <label for="date_of_birth"><b>Date of Birth:</b></label>
-          <input type="date" name="date_of_birth" id="date_of_birth" required>
+          <input type="date" name="dob" id="dob" required min="<?php echo date('Y-m-d', strtotime('-18 years')); ?>">
 
           <label for="gender"><b>Gender:</b></label>
           <select name="gender" id="gender" required>
@@ -85,10 +85,11 @@
           </select>
 
           <label for="address"><b>Address:</b></label>
-          <input type="text" placeholder="Enter physical address" name="address" id="address" required>
+          <input type="text" placeholder="Enter physical address" name="address" id="address" required  minlength="5" maxlength="100" title="Address must be between 5 and 100 characters.>
     
           <label for="grade"><b>Grade:</b></label>
-          <input type="text" placeholder="Enter Grade" name="grade" id="grade" required>
+          <input type="text" placeholder="Enter Grade" name="grade" id="grade" min="1" required  pattern="^[A-Fa-f]$|^[1-9]\d*$" 
+          title="Please enter a valid grade (A-F or 1-100).">
 
           <label for="subjects"><b>Select Subjects (up to 4):</b></label>
           <select id="subjects" name="subjects[]" multiple size="6" required>

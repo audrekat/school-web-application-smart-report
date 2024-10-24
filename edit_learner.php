@@ -62,25 +62,29 @@ $learner = $result->fetch_assoc();
       <input type="hidden" name="learner_id" value="<?php echo $learner_id; ?>">
 
       <label for="name"><b>Name(s):</b></label>
-      <input type="text" placeholder="Enter name" name="name" id="name" value="<?php echo htmlspecialchars($learner['name']); ?>" required>
+      <input type="text" placeholder="Enter name" name="name" id="name" value="<?php echo htmlspecialchars($learner['name']); ?>" required pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed.">
 
       <label for="surname"><b>Surname:</b></label>
-      <input type="text" placeholder="Enter surname" name="surname" id="surname" value="<?php echo htmlspecialchars($learner['surname']); ?>" required>
+      <input type="text" placeholder="Enter surname" name="surname" id="surname" value="<?php echo htmlspecialchars($learner['surname']); ?>" required  pattern="[A-Za-z]+" title="Only letters are allowed.">
 
       <label for="id_number"><b>ID Number:</b></label>
-      <input type="text" placeholder="Enter ID number" name="id_number" id="id_number" value="<?php echo htmlspecialchars($learner['id_number']); ?>" required>
+      <input type="text" placeholder="Enter ID number" name="id_number" id="id_number" value="<?php echo htmlspecialchars($learner['id_number']); ?>" required min="<?php echo date('Y-m-d', strtotime('-18 years')); ?>">
 
       <label for="date_of_birth"><b>Date of Birth:</b></label>
-      <input type="text" placeholder="YYYY/MM/DD" name="date_of_birth" id="date_of_birth" value="<?php echo htmlspecialchars($learner['date_of_birth']); ?>" required>
+      <input type="text" placeholder="YYYY/MM/DD" name="date_of_birth" id="date_of_birth" value="<?php echo htmlspecialchars($learner['date_of_birth']); ?>" required pattern="^\d{4}/\d{2}/\d{2}$" 
+      title="Please enter the date in YYYY/MM/DD format.">
 
       <label for="gender"><b>Gender:</b></label>
-      <input type="text" placeholder="Enter gender" name="gender" id="gender" value="<?php echo htmlspecialchars($learner['gender']); ?>" required>
+      <input type="text" placeholder="Enter gender" name="gender" id="gender" value="<?php echo htmlspecialchars($learner['gender']); ?>" required pattern="^(Male|Female|Other)$" 
+      title="Please enter 'Male', 'Female', or 'Other'.">
 
       <label for="address"><b>Address:</b></label>
-      <input type="text" placeholder="Enter physical address" name="address" id="address" value="<?php echo htmlspecialchars($learner['address']); ?>" required>
+      <input type="text" placeholder="Enter physical address" name="address" id="address" value="<?php echo htmlspecialchars($learner['address']); ?>" required pattern=".{5,}" 
+      title="Address must be at least 5 characters long.">
 
       <label for="grade"><b>Grade:</b></label>
-      <input type="text" placeholder="Enter Grade" name="grade" id="grade" value="<?php echo htmlspecialchars($learner['grade']); ?>" required>
+      <input type="text" placeholder="Enter Grade" name="grade" id="grade" value="<?php echo htmlspecialchars($learner['grade']); ?>" required pattern="^[A-Fa-f]$|^[1-9]\d*$" 
+      title="Please enter a valid grade (A-F or 1-100).">
 
       <!-- Dropdown for subjects (single dropdown, allows multiple selection) -->
       <label for="subjects"><b>Select Subjects (up to 3):</b></label>
@@ -102,6 +106,16 @@ $learner = $result->fetch_assoc();
           <option value="Physics">Physics</option>
       </select>
     </div>
+
+    // Check for errors
+    if (empty($errors)) {
+        echo "Form submitted successfully!   Name: " . htmlspecialchars($surname), Surname: " . htmlspecialchars($surname), ID Number: " . htmlspecialchars($id_number), Date of Birth: " . htmlspecialchars($dob), Gender: " . htmlspecialchars($gender), Address: " . htmlspecialchars($address), Grade: " . htmlspecialchars($grade);
+    } else {
+        foreach ($errors as $error) {
+            echo "<p>Error: $error</p>";
+        }
+    }
+}
     
     <hr>
     

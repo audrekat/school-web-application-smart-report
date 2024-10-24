@@ -8,23 +8,88 @@ use PHPMailer\PHPMailer\Exception;
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $name = $_POST['name'];
-    $surname = $_POST['surname'];
-    $id_number = $_POST['id_number'];
-    $gender = $_POST['gender'];
-    $address = $_POST['address'];
-    $email = $_POST['email'];
-    $contact = $_POST['contact'];
-    $username = $_POST['username'];
-    $user_type = $_POST['user_type'];
+    $name = trim($_POST['name']);
+    $surname = trim($_POST['surname']);
+    $id_number = trim($_POST['id_number']);
+    $gender = trim($_POST['gender'])  ? trim($_POST["gender"]) : '';
+    $address = trim($_POST['address']);
+    $email = trim($_POST['email']);
+    $contact = trim($_POST['contact']);
+    $username = trim($_POST['username']);
+    $user_type = trim($_POST['user_type'])  ? trim($_POST["user_type"]) : '';
+
+}
     
     // Validate ID number
 if (!preg_match('/^\d{13}$/', $id_number)) {
     die("Error: ID Number must be exactly 13 digits long.");
 }
 
+// Validate name
+ if (empty($name)) {
+    $errors[] = "Name is required.";
+} elseif (!preg_match("/^[A-Za-z]+$/", $name)) {
+    $errors[] = "Name can only contain letters.";
+}
+
+// Validate surname
+if (empty($surname)) {
+    $errors[] = "Name is required.";
+ } elseif (!preg_match("/^[A-Za-z]+$/", $surname)) {
+     $errors[] = "Surname can only contain letters.";
+ }
+
+   // Validate gender
+   if (empty($gender)) {
+    $errors[] = "Gender is required.";
+}  
+
+ // Validate address
+ if (empty($address) || strlen($address) < 5 || strlen($address) > 100) {
+    $errors[] = "Address must be between 5 and 100 characters.";
+}
+
+ // Validate email
+ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors[] = "Invalid email format.";
+}
+
+ // Validate contact number
+ if (empty($contact) || !preg_match("/^\+27[0-9]{9}$/", $contact)) {
+    $errors[] = "Contact number must be in the format +27XXXXXXXXX.";
+
+ 
+
+// Validate username
+if (empty($username) || !preg_match("/^[A-Za-z0-9_]{3,15}$/", $username)) {
+    $errors[] = "Username must be 3-15 characters and can include letters, numbers, and underscores.";
+}
+
+ // Validate user type
+ if (empty($user_type) || !in_array($user_type, ['admin', 'teacher', 'parent'])) {
+    $errors[] = "Please select a valid user type.";
+}
+
+
+
+ // Check for errors
+ if (empty($errors)) {
+    echo "Form submitted successfully! Name: $name, Surname: $surname, Gender: $gender,  Email: $email, Address: $address, Contact: $contact, Username: $username";
+} else {
+    foreach ($errors as $error) {
+        echo "<p>Error: $error</p>";
+    }
+}
+
+
+
+
+
+
+
+
     // Generate a random password and hash it
-    $password = bin2hex(random_bytes(4));
+    $password = bin2hex(random_bytes(8));
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Set registration date
@@ -70,12 +135,12 @@ if (!preg_match('/^\d{13}$/', $id_number)) {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'malemamahlatse70@gmail.com';
+            $mail->Username = 'raserom0@gmail.com';
             $mail->Password = 'cdbhkiurykowykqw';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom('malemamahlatse70@gmail.com', 'Mahlatse');
+            $mail->setFrom('raserom0@gmail.com', 'esrom(');
             $mail->addAddress($email, "$name $surname");
 
             $mail->isHTML(true);

@@ -9,13 +9,62 @@ if ($conn->connect_error) {
 // Check if form was submitted to update teacher details
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the form data
-    $teacher_id = $_POST['Teacher_ID'];  // Assuming you're passing the teacher ID from a hidden input
-    $name = $_POST['Name'];
-    $surname = $_POST['Surname'];
-    $id_number = $_POST['id_number'];
-    $gender = $_POST['gender'];
-    $email = $_POST['Email'];
-    $contact = $_POST['Contact'];
+    $teacher_id = trim($_POST['Teacher_ID']);  // Assuming you're passing the teacher ID from a hidden input
+    $name = trim($_POST['Name']);
+    $surname = trim($_POST['Surname']);
+    $id_number = trim($_POST['id_number']);
+    $gender = trim($_POST['gender']);
+    $email = trim($_POST['Email']);
+    $contact = trim($_POST['Contact']);
+
+     // Validate name
+    if (empty($name)) {
+        $errors[] = "Name is required.";
+    } elseif (!preg_match("/^[A-Za-z]+$/", $name)) {
+        $errors[] = "Name can only contain letters.";
+    }
+
+    // Validate surname
+if (empty($surname)) {
+    $errors[] = "Name is required.";
+ } elseif (!preg_match("/^[A-Za-z]+$/", $surname)) {
+     $errors[] = "Surname can only contain letters.";
+ }
+
+  // Validate ID number
+  if (!preg_match('/^\d{13}$/', $id_number)) {
+    die("Error: ID Number must be exactly 13 digits long.");
+}
+
+// Validate gender
+if (empty($gender)) {
+    $errors[] = "Gender is required.";
+}  
+
+// Validate email
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors[] = "Invalid email format.";
+}
+
+ // Validate contact number
+ if (empty($contact) || !preg_match("/^\+27[0-9]{9}$/", $contact)) {
+    $errors[] = "Contact number must be in the format +27XXXXXXXXX.";
+
+ }
+
+ // Check for errors
+ if (empty($errors)) {
+    echo "Form submitted successfully! Name: $name, Surname: $surname, ID number: $id_number, Gender: $gender,  Email: $email, Contact: $contact,";
+} else {
+    foreach ($errors as $error) {
+        echo "<p>Error: $error</p>";
+    }
+}
+
+
+
+
+
 
     // Update query
     $sql = "UPDATE teacher SET name=?, Surname=?, id_number=?, gender=?, Email=?, Contact=? WHERE teacher_id=?";
@@ -71,26 +120,30 @@ $conn->close();
         <input type="hidden" name="teacher_id" value="<?php echo $teacher['Teacher_ID']; ?>">
 
         <label for="name"><b>Name(s):</b></label>
-        <input type="text" name="name" id="name" value="<?php echo $teacher['Name']; ?>" required>
+        <input type="text" name="name" id="name" value="<?php echo $teacher['Name']; ?>" required pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed.">
 
         <label for="surname"><b>Surname:</b></label>
-        <input type="text" name="surname" id="surname" value="<?php echo $teacher['Surname']; ?>" required>
+        <input type="text" name="surname" id="surname" value="<?php echo $teacher['Surname']; ?>" required pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed.">
 
         <label for="id_number"><b>ID Number:</b></label>
-        <input type="text" name="id_number" id="id_number" value="<?php echo $teacher['id_number']; ?>" required>
+        <input type="text" name="id_number" id="id_number" value="<?php echo $teacher['id_number']; ?>" required pattern="\d{13}" 
+        title="ID number must be exactly 13 digits.">
 
         <label for="gender"><b>Gender:</b></label>
-        <select name="gender" id="gender" required>
+        <select name="gender" id="gender" required pattern="^(Male|Female|Other)$" 
+        title="Please enter 'Male', 'Female', or 'Other'.">
             <option value="female" <?php if ($teacher['gender'] == 'female') echo 'selected'; ?>>Female</option>
             <option value="male" <?php if ($teacher['gender'] == 'male') echo 'selected'; ?>>Male</option>
             <option value="other" <?php if ($teacher['gender'] == 'other') echo 'selected'; ?>>Other</option>
         </select>
 
         <label for="email"><b>Email Address:</b></label>
-        <input type="email" name="email" id="email" value="<?php echo $teacher['Email']; ?>" required>
+        <input type="email" name="email" id="email" value="<?php echo $teacher['Email']; ?>" required pattern=".{5,}" 
+        title="Address must be at least 5 characters long.">
 
         <label for="contact"><b>Contact:</b></label>
-        <input type="text" name="contact" id="contact" value="<?php echo $teacher['Contact']; ?>" required>
+        <input type="text" name="contact" id="contact" value="<?php echo $teacher['Contact']; ?>" required pattern="^\+27[0-9]{9}$" 
+        title="Please enter a valid contact number in the format +27XXXXXXXXX.">
 
         <hr>
         <button type="submit" class="registerbtn">Update</button>
