@@ -99,7 +99,7 @@ if ($password !== $confirm_password) {
 
 
     // Connect to the database
-    $conn = new mysqli("localhost", "root", "", "smart_report");
+    $conn = new mysqli("localhost", "root", "", "smart-report");
 
     // Check the connection
     if ($conn->connect_error) {

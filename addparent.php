@@ -96,7 +96,7 @@ if (empty($username) || !preg_match("/^[A-Za-z0-9_]{3,15}$/", $username)) {
     $registration_date = date('Y-m-d H:i:s');
 
     // Connect to the database
-    $conn = new mysqli('localhost', 'root', '', 'smart_report');
+    $conn = new mysqli('localhost', 'root', '', 'smart-report');
 
     // Check the connection
     if ($conn->connect_error) {

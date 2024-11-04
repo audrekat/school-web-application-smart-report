@@ -186,7 +186,7 @@
             $servername = "localhost";
             $username = "root";
             $password = "";
-            $dbname = "smart_report";  // Make sure the database name matches your setup
+            $dbname = "smart-report";  // Make sure the database name matches your setup
 
             // Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
